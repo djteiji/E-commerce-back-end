@@ -14,7 +14,7 @@ router.get('/', (req, res) => {
       }
     ]
   })
-  .then(dbTagData = res.json(dbTagData))
+  .then(dbTagData => res.json(dbTagData))
   .catch(err => {
     console.log(err);
     res.status.apply(500).json(err);
@@ -32,7 +32,7 @@ router.get('/:id', (req, res) => {
     include: [
     {
       model: Product,
-      attributes: ['id', 'product_name', 'price', 'stock', 'category_id']
+      attributes: ['id', 'product_name', 'price', 'stock', 'category_id'],
     }
    ]
   })
@@ -41,7 +41,7 @@ router.get('/:id', (req, res) => {
       res.status(404).json({ message: 'No tag found with this id'});
       return;
     }
-    res.json(dbtagData);
+    res.json(dbTagData);
   })
   .catch(err => {
     console.log(err);
@@ -52,7 +52,7 @@ router.get('/:id', (req, res) => {
 router.post('/', (req, res) => {
   // create a new tag
   Tag.create({
-    category_name: req.body.tag_name
+    tag_name: req.body.tag_name
   })
   .then(dbTagData => res.json (dbTagData))
   .catch(err => {

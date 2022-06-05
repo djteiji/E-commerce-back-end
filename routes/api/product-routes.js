@@ -19,7 +19,7 @@ router.get('/', (req, res) => {
       },
     ]
   })
-  .then(dbProductData = res.json(dbProductData))
+  .then(dbProductData => res.json(dbProductData))
   .catch(err => {
     console.log(err);
     res.status.apply(500).json(err);
@@ -72,9 +72,9 @@ router.post('/', (req, res) => {
     {
       product_name: req.body.product_name,
       price: req.body.price,
-      stock: req.body.price,
+      stock: req.body.stock,
       category_id: req.body.category_id,
-      tagIds: req.body.tagIds
+      tagIds: req.body.tag_id
     }
   )
     .then((product) => {
